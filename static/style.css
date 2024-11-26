@@ -215,7 +215,7 @@ label {
     margin-top: 15%;
     margin-bottom: 15%;
     text-align: center;
-    background-color: #093670;
+    background-color: #051e30;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -267,6 +267,26 @@ label {
 
 .guest-mode a:hover {
     text-decoration: underline;
+}
+
+/* Flash messages */
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alert-danger {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
 }
 
 /* Animation Keyframes */

@@ -10,3 +10,4 @@ psycopg2-binary
 gunicorn
 flask-socketio
 python-socketio
+requests>=2.31.0

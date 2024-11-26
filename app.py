@@ -1,3 +1,4 @@
+#!./venv/bin/python3
 import os
 import cv2
 from flask import Flask, render_template, Response, redirect, url_for, session, flash, request, send_file
@@ -17,6 +18,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.pdfgen import canvas
 import csv
 import time
+from chatbot_handler import chatbot_bp
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -34,6 +36,9 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 socketio = SocketIO(app, cors_allowed_origins="*")
 pose_detector = PoseDetector()
+
+# Register blueprints
+app.register_blueprint(chatbot_bp)
 
 # Create the uploads folder if it doesn't exist
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -95,6 +100,20 @@ User.workouts = db.relationship('Workout', order_by=Workout.id, back_populates='
 
 # Global camera object
 camera = None
+
+@app.context_processor
+def inject_template_vars():
+    # Get current endpoint
+    endpoint = request.endpoint if request else None
+    
+    # Hide chatbot and nav on authentication pages
+    hide_chatbot = endpoint in ['index', 'login', 'register']
+    hide_nav = hide_chatbot
+    
+    return {
+        'hide_chatbot': hide_chatbot,
+        'hide_nav': hide_nav
+    }
 
 @app.context_processor
 def override_url_for():
@@ -199,7 +218,7 @@ def login():
         print("User not found")
     
     flash('Invalid email or password')
-    return redirect(url_for('/'))
+    return redirect(url_for('index'))
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -409,4 +428,4 @@ def nearest_gym():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    socketio.run(app, debug=True, port=5001, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port=5002, debug=True, allow_unsafe_werkzeug=True)
