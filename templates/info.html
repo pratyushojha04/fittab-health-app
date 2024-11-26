@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_info.css') }}">
+    <title>Information Page</title>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-info-circle"></i> FitTab Information</h1>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <div class="nav-menu">
+                <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+                <a href="{{ url_for('exercise') }}"><i class="fas fa-dumbbell"></i> Exercise</a>
+                <a href="{{ url_for('diet') }}"><i class="fas fa-utensils"></i> Diet</a>
+                <a href="{{ url_for('workouts') }}"><i class="fas fa-history"></i> History</a>
+                <a href="{{ url_for('index') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h2>ABOUT US</h2>
+        <p id='p'>
+            Welcome to FITTAB, where we blend the latest in technology with expert guidance to revolutionize<br>
+            your fitness journey. Specializing in personalized advice and exercise guidance under the supervision,<br>
+            of Artificial Intelligence, we ensure every workout is optimized for your goals and tailored to your<br>
+            unique fitness level. Whether you're a beginner looking to start your fitness journey or a seasoned<br>
+            athlete aiming to reach new heights, our AI-driven approach delivers precise insights and actionable<br>
+            plans to help you achieve sustainable results. Join us and discover the future of fitness, <br>
+            where innovation meets personalized wellness
+        </p>
+        <h3>Additional Section</h3>
+        <p>this product is non profitable</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Website Name. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+</body>
+</html>

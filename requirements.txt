@@ -1,0 +1,12 @@
+reportlab 
+Flask 
+opencv-python 
+SQLAlchemy 
+mediapipe 
+numpy 
+Flask-Migrate 
+Werkzeug 
+psycopg2-binary
+gunicorn
+flask-socketio
+python-socketio
