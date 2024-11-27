@@ -1,7 +1,6 @@
-// Chatbot implementation using Gemini API
+// Chatbot implementation
 class FitTabChatbot {
     constructor() {
-        this.API_KEY = 'AIzaSyBkQIdA1jCtK_C-l9GWS0yzh73UG61jeGU';
         this.isOpen = false;
         this.initializeEventListeners();
     }
@@ -11,6 +10,11 @@ class FitTabChatbot {
         const minimizeButton = document.getElementById('chatbot-minimize');
         const sendButton = document.getElementById('chatbot-send');
         const inputField = document.getElementById('chatbot-input');
+
+        if (!container || !minimizeButton || !sendButton || !inputField) {
+            console.error('Required chatbot elements not found');
+            return;
+        }
 
         minimizeButton.addEventListener('click', () => this.toggleChat());
         sendButton.addEventListener('click', () => this.sendMessage());
@@ -29,8 +33,9 @@ class FitTabChatbot {
 
     toggleChat() {
         const container = document.getElementById('chatbot-container');
-        this.isOpen = !this.isOpen;
+        if (!container) return;
         
+        this.isOpen = !this.isOpen;
         if (this.isOpen) {
             container.classList.remove('chatbot-minimized');
         } else {
@@ -41,8 +46,13 @@ class FitTabChatbot {
     async sendMessage() {
         const inputField = document.getElementById('chatbot-input');
         const messagesContainer = document.getElementById('chatbot-messages');
-        const message = inputField.value.trim();
         
+        if (!inputField || !messagesContainer) {
+            console.error('Required chatbot elements not found');
+            return;
+        }
+
+        const message = inputField.value.trim();
         if (!message) return;
 
         // Add user message to chat
@@ -53,42 +63,55 @@ class FitTabChatbot {
             // Show typing indicator
             this.showTypingIndicator();
 
-            // Make API call to Gemini
-            const response = await this.callGeminiAPI(message);
-            console.log('API Response:', response); // Debug log
+            // Make API call
+            const response = await fetch('/chatbot/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message })
+            });
 
-            // Remove typing indicator and add response
+            // Remove typing indicator
             this.hideTypingIndicator();
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to get response from server');
+            }
+
+            const data = await response.json();
             
-            if (response && (response.response || response.html_response)) {
-                this.addMessageToChat('bot', response.response || 'No response text', response.html_response);
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            if (data.response || data.html_response) {
+                this.addMessageToChat('bot', data.response || 'No response text', data.html_response);
             } else {
-                this.addMessageToChat('bot', 'Sorry, I received an invalid response format.');
-                console.error('Invalid response format:', response);
+                throw new Error('Invalid response format from server');
             }
 
         } catch (error) {
+            console.error('Error in sendMessage:', error);
             this.hideTypingIndicator();
             this.addMessageToChat('bot', 'Sorry, I encountered an error. Please try again.');
-            console.error('Error:', error);
         }
     }
 
     addMessageToChat(sender, text, html = null) {
         const messagesContainer = document.getElementById('chatbot-messages');
+        if (!messagesContainer) return;
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `chatbot-message ${sender}-message`;
         
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
         
-        console.log('Adding message:', { sender, text, html }); // Debug log
-        
-        // If HTML response is provided and it's a bot message, use it
         if (sender === 'bot' && html) {
             contentDiv.innerHTML = html;
         } else {
-            // For user messages or when no HTML is provided
             contentDiv.textContent = text;
         }
         
@@ -108,29 +131,6 @@ class FitTabChatbot {
         const typingIndicator = document.getElementById('typing-indicator');
         if (typingIndicator) {
             typingIndicator.style.display = 'none';
-        }
-    }
-
-    async callGeminiAPI(message) {
-        try {
-            const response = await fetch('/chatbot/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message })
-            });
-
-            if (!response.ok) {
-                throw new Error(`API request failed: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log('Raw API response:', data); // Debug log
-            return data;
-        } catch (error) {
-            console.error('Error calling Gemini API:', error);
-            throw error;
         }
     }
 }

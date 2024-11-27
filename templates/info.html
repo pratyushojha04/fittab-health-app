@@ -4,21 +4,124 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style_info.css') }}">
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .fitness-card {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+    }
+    .fitness-card:nth-child(1) { animation-delay: 0.2s; }
+    .fitness-card:nth-child(2) { animation-delay: 0.4s; }
+    .fitness-card:nth-child(3) { animation-delay: 0.6s; }
+    .fitness-card:nth-child(4) { animation-delay: 0.8s; }
+    .fitness-card:nth-child(5) { animation-delay: 1.0s; }
+    .fitness-card:nth-child(6) { animation-delay: 1.2s; }
+    
+    .feature-icon {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        font-size: 4rem;
+        color: var(--highlight-color);
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="content">
-    <h2>ABOUT US</h2>
-    <p id='p'>
-        Welcome to FITTAB, where we blend the latest in technology with expert guidance to revolutionize<br>
-        your fitness journey. Specializing in personalized advice and exercise guidance under the supervision,<br>
-        of Artificial Intelligence, we ensure every workout is optimized for your goals and tailored to your<br>
-        unique fitness level. Whether you're a beginner looking to start your fitness journey or a seasoned<br>
-        athlete aiming to reach new heights, our AI-driven approach delivers precise insights and actionable<br>
-        plans to help you achieve sustainable results. Join us and discover the future of fitness, <br>
-        where innovation meets personalized wellness
-    </p>
-    <h3>Additional Section</h3>
-    <p>this product is non profitable</p>
+    <h2>Discover Your Fitness Journey</h2>
+    <div class="info-grid">
+        <div class="fitness-card info-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="info-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="info-card-title">Smart Workout Tracking</h3>
+            <p class="info-card-content">
+                Track your exercises, sets, and reps with our intelligent workout tracking system. Get real-time feedback on your form and progress.
+            </p>
+        </div>
+
+        <div class="fitness-card info-card">
+            <div class="feature-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="info-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h3 class="info-card-title">AI-Powered Coaching</h3>
+            <p class="info-card-content">
+                Experience personalized coaching powered by advanced AI. Get form corrections, workout suggestions, and progress tracking in real-time.
+            </p>
+        </div>
+
+        <div class="fitness-card info-card">
+            <div class="feature-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="info-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h3 class="info-card-title">Nutrition Planning</h3>
+            <p class="info-card-content">
+                Get customized meal plans and nutrition advice tailored to your fitness goals. Track your macros and stay on top of your diet.
+            </p>
+        </div>
+
+        <div class="fitness-card info-card">
+            <div class="feature-icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3 class="info-card-title">Gym Finder</h3>
+            <p class="info-card-content">
+                Locate nearby gyms and fitness centers. Read reviews, check facilities, and find the perfect workout spot for you.
+            </p>
+        </div>
+
+        <div class="fitness-card info-card">
+            <div class="feature-icon">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <div class="info-icon">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <h3 class="info-card-title">Progress Tracking</h3>
+            <p class="info-card-content">
+                Monitor your fitness journey with detailed progress tracking. Set goals, track achievements, and visualize your improvements.
+            </p>
+        </div>
+
+        <div class="fitness-card info-card">
+            <div class="feature-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="info-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3 class="info-card-title">Community Support</h3>
+            <p class="info-card-content">
+                Join a community of fitness enthusiasts. Share your progress, get motivated, and inspire others on their fitness journey.
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}

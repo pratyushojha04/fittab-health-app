@@ -1,11 +1,11 @@
 /* Basic styling for header and footer */
 body {
     color: #333;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, rgb(0, 103, 105), rgb(64, 165, 120));
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ecf0f1;
+    color: #ffffff;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -20,14 +20,15 @@ body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     padding: 1rem;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-toggle {
@@ -36,13 +37,13 @@ header {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    color: var(--text-light);
+    color: #ffffff;
     font-size: 1.5rem;
     transition: color 0.3s ease;
 }
 
 .nav-toggle:hover {
-    color: var(--accent-color);
+    color: rgb(157, 222, 139);
 }
 
 .nav-menu {
@@ -52,7 +53,7 @@ header {
 }
 
 nav a {
-    color: var(--text-light);
+    color: #ffffff;
     text-decoration: none;
     padding: 0.75rem 1.25rem;
     border-radius: 8px;
@@ -67,10 +68,10 @@ nav a {
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(64, 165, 120);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-color: rgb(157, 222, 139);
 }
 
 nav a i {
@@ -80,6 +81,7 @@ nav a i {
 
 nav a:hover i {
     transform: scale(1.1);
+    color: rgb(230, 255, 148);
 }
 
 /* Mobile Navigation */
@@ -93,7 +95,7 @@ nav a:hover i {
 
     nav a:hover {
         transform: translateX(5px);
-        background: rgba(255, 255, 255, 0.15);
+        background: rgb(64, 165, 120);
     }
 }
 
@@ -169,7 +171,7 @@ nav a:hover i {
     font-size: 2.5rem;
     margin: 0;
     text-align: center;
-    color: #ecf0f1;
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -179,23 +181,17 @@ nav a:hover i {
     color: black;
 }
 
-footer {
-    background-color: #120b0b;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
     width: 100%;
-}
-
-:root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-light: #ecf0f1;
-    --text-dark: #2c3e50;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
 .info-container {
@@ -212,29 +208,26 @@ footer {
 .info-title {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(45deg, rgb(64, 165, 120), rgb(157, 222, 139));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .info-subtitle {
-    color: var(--text-light);
+    color: #ffffff;
     font-size: 1.2rem;
     opacity: 0.8;
 }
 
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
 .info-card {
+    width: 100%;
+    max-width: 350px;
+    margin-left: 30px;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
@@ -252,23 +245,23 @@ footer {
 .info-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(45deg, rgb(64, 165, 120), rgb(157, 222, 139));
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-light);
+    color: #ffffff;
     font-size: 1.5rem;
 }
 
 .info-card-title {
     font-size: 1.5rem;
-    color: var(--text-light);
+    color: #ffffff;
     margin: 0;
 }
 
 .info-card-content {
-    color: var(--text-light);
+    color: #ffffff;
     opacity: 0.8;
     line-height: 1.6;
 }
@@ -280,6 +273,7 @@ footer {
 }
 
 .info-list-item {
+    
     display: flex;
     align-items: center;
     gap: 0.8rem;
@@ -297,7 +291,7 @@ footer {
 
 .info-list-item:before {
     content: '✓';
-    color: var(--secondary-color);
+    color: rgb(64, 165, 120);
     font-weight: bold;
 }
 
@@ -307,8 +301,8 @@ footer {
 }
 
 .info-button {
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-    color: var(--text-light);
+    background: linear-gradient(45deg, rgb(64, 165, 120), rgb(157, 222, 139));
+    color: #ffffff;
     border: none;
     padding: 1rem 2rem;
     border-radius: 25px;
@@ -316,7 +310,7 @@ footer {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     display: inline-block;
 }
@@ -327,8 +321,8 @@ footer {
 }
 
 button {
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-    color: var(--text-light);
+    background: linear-gradient(45deg, rgb(64, 165, 120), rgb(157, 222, 139));
+    color: #ffffff;
     border: none;
     padding: 1rem 2rem;
     border-radius: 25px;
@@ -336,7 +330,7 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
@@ -346,6 +340,17 @@ button:hover {
 
 button:active {
     transform: translateY(-1px);
+}
+
+:root {
+    --primary-color: rgb(0, 103, 105);
+    --secondary-color: rgb(64, 165, 120);
+    --accent-color: rgb(157, 222, 139);
+    --highlight-color: rgb(230, 255, 148);
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.1);
 }
 
 /* Responsive Design */

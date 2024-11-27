@@ -1,9 +1,10 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-light: #ecf0f1;
-    --text-dark: #2c3e50;
+    --primary-color: rgb(0, 103, 105);
+    --secondary-color: rgb(64, 165, 120);
+    --accent-color: rgb(157, 222, 139);
+    --highlight-color: rgb(230, 255, 148);
+    --text-light: #ffffff;
+    --text-dark: #333333;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -12,7 +13,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,7 +27,7 @@ html, body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 103, 105, 0.95);
     backdrop-filter: blur(10px);
     padding: 1rem;
     box-shadow: var(--shadow);
@@ -65,19 +66,19 @@ nav a {
     border-radius: 8px;
     transition: all 0.3s ease;
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(64, 165, 120, 0.1);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(64, 165, 120, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow);
+    border-color: var(--accent-color);
 }
 
 nav a i {
@@ -200,28 +201,31 @@ nav a:hover i {
 }
 
 .stat-card {
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 1.5rem;
+    background-color: rgba(0, 103, 105, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
     border-radius: 15px;
+    padding: 1.5rem;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
+    background: rgba(0, 103, 105, 0.2);
+    transform: translateY(-3px);
 }
 
 .stat-value {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--highlight-color);
     margin-bottom: 0.5rem;
 }
 
 .stat-label {
     color: var(--text-light);
-    font-size: 1rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .profile-details {
@@ -234,8 +238,8 @@ nav a:hover i {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    background-color: rgba(0, 103, 105, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
     border-radius: 15px;
     transition: transform 0.3s ease;
 }

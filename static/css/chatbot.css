@@ -6,7 +6,7 @@
     height: 500px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 25px rgba(0, 103, 105, 0.2);
     display: flex;
     flex-direction: column;
     z-index: 1000;
@@ -19,7 +19,7 @@
 }
 
 #chatbot-header {
-    background: #2c3e50;
+    background: rgb(0, 103, 105);
     color: white;
     padding: 15px;
     display: flex;
@@ -70,12 +70,12 @@
 }
 
 .user-message .message-content {
-    background: #3498db;
+    background: rgb(64, 165, 120);
     color: white;
 }
 
 .bot-message .message-content {
-    background: #f0f0f0;
+    background: rgba(157, 222, 139, 0.2);
     color: #333;
     font-size: 14px;
     line-height: 1.5;
@@ -130,10 +130,39 @@
 
 #chatbot-input-container {
     padding: 15px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid rgba(0, 103, 105, 0.1);
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid rgba(64, 165, 120, 0.3);
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#chatbot-input:focus {
+    border-color: rgb(64, 165, 120);
+}
+
+#chatbot-send {
+    background: rgb(64, 165, 120);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    transition: background-color 0.3s;
+}
+
+#chatbot-send:hover {
+    background: rgb(0, 103, 105);
 }
 
 #typing-indicator {
@@ -144,7 +173,7 @@
     align-items: center;
     gap: 5px;
     padding: 10px;
-    background: #f0f0f0;
+    background: rgba(157, 222, 139, 0.2);
     border-radius: 15px;
 }
 
@@ -171,32 +200,4 @@
     30% {
         transform: translateY(-4px);
     }
-}
-
-#chatbot-input {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
-}
-
-#chatbot-input:focus {
-    border-color: #3498db;
-}
-
-#chatbot-send {
-    background: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    transition: background-color 0.3s;
-}
-
-#chatbot-send:hover {
-    background: #34495e;
 }

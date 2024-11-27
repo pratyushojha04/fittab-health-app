@@ -1,11 +1,12 @@
 #!./venv/bin/python3
 import os
 import cv2
-from flask import Flask, render_template, Response, redirect, url_for, session, flash, request, send_file
+from flask import Flask, render_template, Response, redirect, url_for, session, flash, request, send_file, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from werkzeug.utils import secure_filename
 from dumbel_curl_script import PoseDetector
+from flask_cors import CORS
 import io
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_socketio import SocketIO, emit
@@ -21,6 +22,8 @@ import time
 from chatbot_handler import chatbot_bp
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
 app.secret_key = os.getenv("SECRET_KEY", "__privatekey__")

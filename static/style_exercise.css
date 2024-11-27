@@ -1,9 +1,10 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-light: #ecf0f1;
-    --text-dark: #2c3e50;
+    --primary-color: rgb(0, 103, 105);
+    --secondary-color: rgb(64, 165, 120);
+    --accent-color: rgb(157, 222, 139);
+    --highlight-color: rgb(230, 255, 148);
+    --text-light: #ffffff;
+    --text-dark: #333333;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -12,7 +13,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,7 +27,7 @@ html, body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 103, 105, 0.95);
     backdrop-filter: blur(10px);
     padding: 1rem;
     box-shadow: var(--shadow);
@@ -40,7 +41,7 @@ header h1 {
     margin: 0;
     font-size: 2rem;
     font-weight: 600;
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(45deg, var(--accent-color), var(--highlight-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -209,6 +210,80 @@ button:active {
     content: '✓';
     color: var(--secondary-color);
     font-weight: bold;
+}
+
+.exercise-card {
+    background-color: rgba(64, 165, 120, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(64, 165, 120, 0.2);
+}
+
+.exercise-card h3 {
+    color: var(--highlight-color);
+    margin-top: 0;
+}
+
+.exercise-card button {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.exercise-card button:hover {
+    background-color: var(--primary-color);
+}
+
+.exercise-form {
+    background-color: rgba(0, 103, 105, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.exercise-form input,
+.exercise-form select {
+    border: 1px solid rgba(64, 165, 120, 0.3);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.exercise-form input:focus,
+.exercise-form select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.exercise-form button {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.exercise-form button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 footer {

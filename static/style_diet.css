@@ -2,11 +2,12 @@
 
 /* Basic styling for body */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-light: #ecf0f1;
-    --text-dark: #2c3e50;
+    --primary-color: rgb(0, 103, 105);
+    --secondary-color: rgb(64, 165, 120);
+    --accent-color: rgb(157, 222, 139);
+    --highlight-color: rgb(230, 255, 148);
+    --text-light: #ffffff;
+    --text-dark: #333333;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -15,7 +16,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,7 +31,7 @@ html, body {
 
 /* Styling for header */
 header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 103, 105, 0.95);
     backdrop-filter: blur(10px);
     padding: 1rem;
     box-shadow: var(--shadow);
@@ -44,7 +45,7 @@ header h1 {
     margin: 0;
     font-size: 2rem;
     font-weight: 600;
-    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    background: linear-gradient(45deg, var(--accent-color), var(--highlight-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -78,19 +79,19 @@ nav a {
     border-radius: 8px;
     transition: all 0.3s ease;
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(64, 165, 120, 0.1);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(64, 165, 120, 0.2);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow);
+    border-color: var(--accent-color);
 }
 
 nav a i {
@@ -299,16 +300,17 @@ button:active {
 }
 
 .meal-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+    background: rgba(0, 103, 105, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
 }
 
 .meal-card:hover {
-    transform: translateY(-5px);
+    background: rgba(0, 103, 105, 0.2);
+    transform: translateY(-3px);
 }
 
 .meal-header {
@@ -499,4 +501,58 @@ button:active {
     .meal-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.diet-plan {
+    background: rgba(64, 165, 120, 0.1);
+    border: 1px solid rgba(157, 222, 139, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.diet-plan:hover {
+    transform: translateY(-5px);
+    background: rgba(64, 165, 120, 0.2);
+}
+
+.diet-form {
+    background: rgba(0, 103, 105, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.diet-form input,
+.diet-form select,
+.diet-form textarea {
+    border: 1px solid rgba(64, 165, 120, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.diet-form input:focus,
+.diet-form select:focus,
+.diet-form textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(64, 165, 120, 0.2);
+}
+
+.progress-bar {
+    background: rgba(157, 222, 139, 0.2);
+    border-radius: 20px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    background: var(--secondary-color);
+    height: 100%;
+    transition: width 0.3s ease;
 }

@@ -1,9 +1,10 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-light: #ecf0f1;
-    --text-dark: #2c3e50;
+    --primary-color: rgb(0, 103, 105);
+    --secondary-color: rgb(64, 165, 120);
+    --accent-color: rgb(157, 222, 139);
+    --highlight-color: rgb(230, 255, 148);
+    --text-light: #ffffff;
+    --text-dark: #333333;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
