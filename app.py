@@ -101,6 +101,22 @@ class Workout(db.Model):
 
 User.workouts = db.relationship('Workout', order_by=Workout.id, back_populates='user')
 
+class Exercise(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    instructions = db.Column(db.Text, nullable=False)
+    tracking_points = db.Column(db.String(200), nullable=False)  # JSON string of body points to track
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'instructions': self.instructions,
+            'tracking_points': self.tracking_points
+        }
+
 # Global camera object
 camera = None
 
@@ -352,7 +368,14 @@ def start_stream():
 def exercise():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-    return render_template('exercise.html')
+        
+    exercises = Exercise.query.all()
+    return render_template('exercise.html', exercises=exercises)
+
+@app.route('/api/exercises')
+def get_exercises():
+    exercises = Exercise.query.all()
+    return jsonify([exercise.to_dict() for exercise in exercises])
 
 @app.route('/generate_pdf')
 def generate_pdf():
@@ -428,7 +451,55 @@ def nearest_gym():
     api_key = ''
     return render_template('nearest_gym.html', api_key=api_key)
 
+def init_exercises():
+    # Check if exercises already exist
+    if Exercise.query.count() > 0:
+        return
+
+    exercises = [
+        {
+            'name': 'Dumbbell Curl',
+            'description': 'A classic bicep exercise that targets the muscles in your upper arm.',
+            'instructions': '''1. Stand with feet shoulder-width apart
+2. Hold dumbbells at your sides with palms facing forward
+3. Keep your upper arms stationary and elbows close to your torso
+4. Curl the weights up towards your shoulders
+5. Slowly lower the weights back to starting position
+6. Keep your core engaged throughout the movement''',
+            'tracking_points': '["left_shoulder", "left_elbow", "left_wrist", "right_shoulder", "right_elbow", "right_wrist"]'
+        },
+        {
+            'name': 'Pull-up',
+            'description': 'A compound exercise that primarily targets your back and biceps muscles.',
+            'instructions': '''1. Grip the pull-up bar with hands slightly wider than shoulder-width
+2. Hang with arms fully extended (dead hang)
+3. Pull yourself up until your chin is over the bar
+4. Keep your core engaged and legs still
+5. Lower yourself back down with control
+6. Repeat while maintaining proper form''',
+            'tracking_points': '["left_shoulder", "left_elbow", "left_wrist", "right_shoulder", "right_elbow", "right_wrist", "left_hip", "right_hip"]'
+        },
+        {
+            'name': 'Push-up',
+            'description': 'A fundamental bodyweight exercise that works your chest, shoulders, and triceps.',
+            'instructions': '''1. Start in a plank position with hands slightly wider than shoulders
+2. Keep your body in a straight line from head to heels
+3. Lower your body until your chest nearly touches the ground
+4. Keep your elbows at a 45-degree angle to your body
+5. Push back up to the starting position
+6. Maintain core engagement throughout''',
+            'tracking_points': '["left_shoulder", "left_elbow", "left_wrist", "right_shoulder", "right_elbow", "right_wrist", "left_hip", "right_hip", "left_knee", "right_knee"]'
+        }
+    ]
+
+    for exercise_data in exercises:
+        exercise = Exercise(**exercise_data)
+        db.session.add(exercise)
+    
+    db.session.commit()
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        init_exercises()  # Initialize exercises
     socketio.run(app, host='0.0.0.0', port=10000, debug=True, allow_unsafe_werkzeug=True)

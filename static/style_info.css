@@ -1,7 +1,7 @@
 /* Basic styling for header and footer */
 body {
     color: #333;
-    background: linear-gradient(135deg, rgb(0, 103, 105), rgb(64, 165, 120));
+    background: linear-gradient(135deg, #006769, rgb(64, 165, 120));
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
